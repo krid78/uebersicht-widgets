@@ -10,37 +10,71 @@ command: sundayFirstCalendar
 refreshFrequency: 3600000
 
 style: """
-  bottom: 10px
-  right: 10px
-  color: #fff
-  font-family: Helvetica Neue
+    //@import 'colors-solarized.styl'
+    base03(a=1)
+      rgba(00,43,54,a) // #002b36
+    base02(a=1)
+      rgba(07,54,66,a) // #073642
+    base01(a=1)
+      rgba(88,110,117,a) // #586e75
+    base00(a=1)
+      rgba(101,123,131,a) // #657b83
+    base0(a=1)
+      rgba(131,148,150,a) // #839496
+    base1(a=1)
+      rgba(147,161,161,a) // #93a1a1
+    base2(a=1)
+      rgba(238,232,213,a) // #eee8d5
+    base3(a=1)
+      rgba(253,246,227,a) // #fdf6e3
+    syellow(a=1)
+      rgba(181,137,0,a) // #b58900
+    sorange(a=1)
+      rgba(203,75,22,a) // #cb4b16
+    sred(a=1)
+      rgba(220,50,47,a) // #dc322f
+    smagenta(a=1)
+      rgba(211,54,130,a) // #d33682
+    sviolet(a=1)
+      rgba(108,113,196,a) // #6c71c4
+    sblue(a=1)
+      rgba(38,139,210,a) // #268bd2
+    scyan(a=1)
+      rgba(42,161,152,a) // #2aa198
+    sgreen(a=1)
+      rgba(133,153,0,a) // #859900
 
-  table
-    border-collapse: collapse
-    table-layout: fixed
+    bottom: 1%
+    right: 1%
+    color: base0()
+    font-family: Helvetica Neue
 
-  td
-    text-align: center
-    padding: 4px 6px
-    text-shadow: 0 0 1px rgba(#000, 0.5)
+    table
+      border-collapse: collapse
+      table-layout: fixed
 
-  thead tr
-    &:first-child td
-      font-size: 24px
-      font-weight: 100
+    td
+      text-align: center
+      padding: 4px 6px
+      //text-shadow: 0 0 1px rgba(#000, 0.5)
 
-    &:last-child td
-      font-size: 11px
-      padding-bottom: 10px
-      font-weight: 500
+    thead tr
+      &:first-child td
+        font-size: 24px
+        font-weight: 100
 
-  tbody td
-    font-size: 12px
+      &:last-child td
+        font-size: 11px
+        padding-bottom: 10px
+        font-weight: 500
 
-  .today
-    font-weight: bold
-    background: rgba(#fff, 0.2)
-    border-radius: 50%
+    tbody td
+      font-size: 12px
+
+    .today
+      font-weight: bold
+      background: base02()
+      border-radius: 50%
 """
 
 render: -> """
