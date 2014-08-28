@@ -10,8 +10,8 @@ startJSON() {
 exportService() {
   echo '  {'
   echo '    "name":"'$1'",'
-  echo '    "ipaddress":"'${ip}'",'
-  echo '    "macaddress":"'${mac}'"'
+  echo '    "ipaddress":"'$2'",'
+  echo '    "macaddress":"'$3'"'
   echo '  }'
 }
 
@@ -24,18 +24,25 @@ endJSON() {
 # Start the JSON.
 startJSON
 
+IFS="
+"
+for NWDEVICE in \
+  "Thunderbolt Ethernet" \
+  "," \
+  "Wi-Fi"; do
+if [[ $NWDEVICE == "," ]]; then
+  # Place a comma between services.
+  echo '  ,'
+  continue
+fi
 # Output the Ethernet information.
-ip=$(networksetup -getinfo ethernet | grep -Ei '(^IP address:)' | awk '{print $3}')
-mac=$(networksetup -getinfo ethernet | grep -Ei '(^Ethernet address:)' | awk '{print $3}')
-exportService "ethernet"
-
-# Place a comma between services.
-echo '  ,'
-
-# Output the Wi-Fi information.
-ip=$(networksetup -getinfo wi-fi | grep -Ei '(^IP address:)' | awk '{print $3}')
-mac=$(networksetup -getinfo wi-fi | grep -Ei '(^Wi-Fi ID:)' | awk '{print $3}')
-exportService "wi-fi"
+NWSERVICE=($(networksetup -getinfo "${NWDEVICE}"))
+ip=${NWSERVICE[1]}
+mac=${NWSERVICE[@]: -1:1}
+exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }"
+done
 
 # End the JSON
 endJSON
+
+# vim: sw=2:ts=2:sts=2
