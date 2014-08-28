@@ -33,14 +33,14 @@ style: """
   font-size: 11px
   color #aaa
   transform translate(0, -50%)
-  	
+
   .scale
   	display inline-block
   	opacity 0.7
-  
+
   .scale p
   	line-height 50px
-   	
+
   .indicator-container
   	display inline-block
   	height 248px
@@ -49,7 +49,7 @@ style: """
   	opacity 0.5
   	margin-bottom 2px
   	overflow hidden
-  	
+
   .revealer
   	width 1px
   	height 100%
@@ -62,17 +62,17 @@ update: (output, domEl) ->
 	# if TimeMachine is running the show our block, if not hide it.
 
 	if @isRunning(output)
-		$(domEl).find('.container').css('display', 'block')		
+		$(domEl).find('.container').css('display', 'block')
 		$(domEl).find('.revealer').css('height', 100 - @percentComplete(output) + '%')
 	else
 		$(domEl).find('.container').css('display', 'none')
-			
+
 isRunning: (data) ->
 	return (if data.match(/Running = \d;/)[0].match(/(\d+)/)[0] is '1' then true else false)
-	
+
 percentComplete: (data) ->
 	return Math.round(Number(data.match?(/Percent = \"?([0-9.e-]*)\D/)[1]) * 100)
-	
+
 ###
 There are a few patterns here to deal with.
  - Percent = 0;
@@ -80,11 +80,11 @@ There are a few patterns here to deal with.
  - Percent = "1";
  - Percent = "0.328473270";
  - Percent = "5.2340984e-34";
- 
+
  So the regex is as follows.
-  - Percent = 
+  - Percent =
   - \"? is optional "
   - [0-9.e-]* gets all the characters in our numbers of various forms
   - \D is the trailing " or ; whichever is present
   - () gives us just the number string
-###	
+###
