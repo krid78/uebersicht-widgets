@@ -45,7 +45,8 @@ style: """
 
   // Position this where you want
   bottom 1%
-  left 35%
+  left 50%
+  transform translate(-50%, 0)
 
   // Statistics text settings
   color base0()
