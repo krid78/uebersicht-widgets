@@ -18,12 +18,12 @@ command: "tmutil status"
 refreshFrequency: 15000
 
 render: (output)->"""
-	<div class='container'>
-		<div class='indicator-container'>
-			<div class='revealer'></div>
-		</div>
-		<div class='scale'><p> - 100%</p><p> - 75%</p><p> - 50%</p><p> - 25%</p><p> - 0%</p></div>
-	</div>
+  <div class='container'>
+    <div class='indicator-container'>
+      <div class='revealer'></div>
+    </div>
+    <div class='scale'><p> - 100%</p><p> - 75%</p><p> - 50%</p><p> - 25%</p><p> - 0%</p></div>
+  </div>
   """
 
 style: """
@@ -69,43 +69,43 @@ style: """
   transform translate(0, -50%)
 
   .scale
-  	display inline-block
-  	opacity 0.7
+    display inline-block
+    opacity 0.7
 
   .scale p
-  	line-height 50px
+    line-height 50px
 
   .indicator-container
-  	display inline-block
-  	height 248px
-  	width 1px
-  	background-color base1()
-  	opacity 0.5
-  	margin-bottom 2px
-  	overflow hidden
+    display inline-block
+    height 248px
+    width 1px
+    background-color base1()
+    opacity 0.5
+    margin-bottom 2px
+    overflow hidden
 
   .revealer
-  	width 1px
-  	height 100%
-  	background-color base03()
-  	opacity 0.5
+    width 1px
+    height 100%
+    background-color base03()
+    opacity 0.5
 """
 
 update: (output, domEl) ->
 
-	# if TimeMachine is running the show our block, if not hide it.
+  # if TimeMachine is running the show our block, if not hide it.
 
-	if @isRunning(output)
-		$(domEl).find('.container').css('display', 'block')
-		$(domEl).find('.revealer').css('height', 100 - @percentComplete(output) + '%')
-	else
-		$(domEl).find('.container').css('display', 'none')
+  if @isRunning(output)
+    $(domEl).find('.container').css('display', 'block')
+    $(domEl).find('.revealer').css('height', 100 - @percentComplete(output) + '%')
+  else
+    $(domEl).find('.container').css('display', 'none')
 
 isRunning: (data) ->
-	return (if data.match(/Running = \d;/)[0].match(/(\d+)/)[0] is '1' then true else false)
+  return (if data.match(/Running = \d;/)[0].match(/(\d+)/)[0] is '1' then true else false)
 
 percentComplete: (data) ->
-	return Math.round(Number(data.match?(/Percent = \"?([0-9.e-]*)\D/)[1]) * 100)
+  return Math.round(Number(data.match?(/Percent = \"?([0-9.e-]*)\D/)[1]) * 100)
 
 ###
 There are a few patterns here to deal with.
@@ -122,3 +122,4 @@ There are a few patterns here to deal with.
   - \D is the trailing " or ; whichever is present
   - () gives us just the number string
 ###
+# vim: ts=2:sts=2:sw=2
