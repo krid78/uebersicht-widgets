@@ -39,38 +39,42 @@ style: """
 
   // position
   top 1%
-  left 175px
+  left 220px
   color base0()
   font-family Helvetica Neue
   font-size 12px
 
+  .container
+    width 220px
+
   .widget-title
     text-align: center
     margin-bottom 1ex
-    //color base1()
     font-size 13px
     font-weight 100
 
   table
     border-collapse collapse
-    table-layout fixed
+    width 100%
+    //table-layout fixed
 
   .process
     text-align left
+    width 50%
 
   .memstr
-    padding-left 1em
+    text-align right
 
   .mempl
     text-align right
+    width 6px
 
   .memp
     text-align right
-    padding 0px
 
   .mempr
     text-align left
-    padding 0px
+    width 15px
 
   .memp-xhuge
     color sred()
@@ -96,7 +100,7 @@ style: """
 render: -> """
   <div class="container">
     <div class="widget-title">Top RAM Processes</div>
-    <table class="cpustats">
+    <table class="ramstats">
       <tbody>
       </tbody>
     </table>

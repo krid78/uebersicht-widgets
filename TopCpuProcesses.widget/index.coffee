@@ -44,31 +44,33 @@ style: """
   font-family Helvetica Neue
   font-size 12px
 
+  .container
+    width 180px
+
   .widget-title
     text-align: center
     margin-bottom 1ex
-    //color base1()
     font-size 13px
     font-weight 100
 
   table
     border-collapse collapse
-    table-layout fixed
+    width 100%
 
   .process
     text-align left
 
   .loadl
     text-align right
-    padding-left 1em
+    width 6px
 
   .load
     text-align right
-    padding 0px
+    width 15px
 
   .loadr
-    text-align left
-    padding 0px
+    text-align right
+    width 15px
 
   .load-xhuge
     color sred()
