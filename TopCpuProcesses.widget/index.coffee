@@ -49,9 +49,12 @@ style: """
 
   .widget-title
     text-align: center
+    padding 1px
     margin-bottom 1ex
-    font-size 13px
-    font-weight 100
+    font-size 12px
+    //font-weight 100
+    background-color base02()
+    border-radius 5px
 
   table
     border-collapse collapse
