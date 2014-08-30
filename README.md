@@ -7,6 +7,7 @@ As I'm a fan of [solarized](), I changed the colors of all widgets to solarized-
 ## NetworkInfo
 
 This module is based on "NetworkInfo" by Chris Johnson. I reworked the shell script to reduce the number of process-calls.
+
 ### Credits
     "name": "NetworkInfo",
     "description" : "Displays current Ethernet and Wi-Fi status (connected / not connected / IP Address / Mac Address.",
@@ -15,9 +16,11 @@ This module is based on "NetworkInfo" by Chris Johnson. I reworked the shell scr
 
 ## TopCpuProcesses
 
-This one is created by myself. The Idea is taken from [Brett Terpstra]()
+This one is created by myself. The Idea is taken from [Brett Terpstra](http://www.brettterpstra.com/). It shows a list of the 10 processes which occupy the CPU most.
 
 ## TopRamProcesses
+
+This one is created by myself. The Idea is taken from [Brett Terpstra](http://www.brettterpstra.com/). It shows a list of the 10 most RAM consuming processes.
 
 ## calendar
 
@@ -54,3 +57,4 @@ This is a fancy way of showing the current tm status. I only adapted the colors 
 	- rework update function @NetworkInfo
 		- currently it's redrawn at each update
 		- it would be better to only redraw on changes
+	- Create Widget-Bundle for TopCpuProcesses and TopRamProcesses
