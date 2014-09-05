@@ -37,8 +37,9 @@ style: """
   sgreen(a=1)
     rgba(133,153,0,a) // #859900
 
-  bottom: 1%
-  right: 1%
+  top 1%
+  right 10%
+  //transform translate(-50%, 0)
   color: base0()
   font-family: Helvetica Neue
 
@@ -53,8 +54,10 @@ style: """
 
   thead tr
     &:first-child td
-      font-size: 24px
+      font-size: 14px
       font-weight: 100
+      border-top solid 1px base02()
+      border-bottom solid 1px base02()
 
     &:last-child td
       font-size: 11px
@@ -67,7 +70,7 @@ style: """
   .today
     font-weight: bold
     background: base02()
-    border-radius: 50%
+    border-radius: 45%
 """
 
 render: -> """

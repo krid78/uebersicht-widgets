@@ -38,8 +38,8 @@ style: """
     rgba(133,153,0,a) // #859900
 
   // position
-  top 1%
-  left 1%
+  bottom 1%
+  left 2%
   color base0()
   font-family Helvetica Neue
   font-size 12px
@@ -51,10 +51,12 @@ style: """
     text-align: center
     padding 1px
     margin-bottom 1ex
-    font-size 12px
-    //font-weight 100
-    background-color base02()
-    border-radius 5px
+    font-size 14px
+    font-weight 100
+    border-top solid 1px base02()
+    border-bottom solid 1px base02()
+    //background-color base02()
+    //border-radius 5px
 
   table
     border-collapse collapse

@@ -88,8 +88,9 @@ style: """
 
   margin:0
   padding:0px
-  left:1%
-  bottom: 1%
+  bottom: 12%
+  left 50%
+  transform translate(-50%, 0)
   background: base03(.0)
   //border:1px solid base02(.25)
   //border-radius:10px
