@@ -47,7 +47,7 @@ style: """
   left 2%
   //width 30%
   color base0()
-  font-family Helvetica Neue
+  font-family Anonymous Pro
   font-size 12px
   //border solid 1px base02()
 
@@ -57,10 +57,10 @@ style: """
     //border solid 1px base02()
 
   .tlist-head
-    padding 1px
+    padding 4px 6px
     margin-bottom 1ex
     font-size 14px
-    font-variant small-caps
+    text-transform uppercase
     font-weight 100
     border-top solid 1px base02()
     border-bottom solid 1px base02()

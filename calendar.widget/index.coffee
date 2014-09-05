@@ -41,7 +41,7 @@ style: """
   right 10%
   //transform translate(-50%, 0)
   color: base0()
-  font-family: Helvetica Neue
+  font-family Anonymous Pro
 
   table
     border-collapse: collapse

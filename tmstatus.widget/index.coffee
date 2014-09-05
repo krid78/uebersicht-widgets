@@ -63,8 +63,8 @@ style: """
 
   left: 0px
   top: 50%
-  font-family: Helvetica Neue
-  font-size: 11px
+  font-family Anonymous Pro
+  font-size: 12px
   color base0()
   transform translate(0, -50%)
 

@@ -41,7 +41,7 @@ style: """
   bottom 1%
   left 2%
   color base0()
-  font-family Helvetica Neue
+  font-family Anonymous Pro
   font-size 12px
 
   .container
@@ -49,7 +49,7 @@ style: """
 
   .widget-title
     text-align: center
-    padding 1px
+    padding 4px 6px
     margin-bottom 1ex
     font-size 14px
     font-weight 100

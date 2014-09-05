@@ -45,12 +45,12 @@ style: """
 
   // Position this where you want
   bottom 1%
-  left 50%
-  transform translate(-50%, 0)
+  right 2%
+  //transform translate(-50%, 0)
 
   // Statistics text settings
   color base0()
-  font-family Helvetica Neue
+  font-family Anonymous Pro
   //background rgba(#fff, .0)
   padding 10px 10px 15px
   border-radius 5px
@@ -75,9 +75,14 @@ style: """
     text-align: widget-align
 
   .widget-title
-    font-size 10px
+    text-align: center
     text-transform uppercase
-    font-weight bold
+    padding 4px 6px
+    margin-bottom 1ex
+    font-size 14px
+    font-weight 100
+    border-top solid 1px base02()
+    border-bottom solid 1px base02()
 
   .label
     font-size 8px

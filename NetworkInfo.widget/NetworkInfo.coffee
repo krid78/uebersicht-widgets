@@ -17,6 +17,7 @@ refreshFrequency: 10000
 
 # Render the output.
 render: (output) -> """
+  <div class="widget-title">Network Info</div>
   <table id='services'></table>
 """
 
@@ -88,12 +89,25 @@ style: """
 
   margin:0
   padding:0px
-  bottom: 12%
+  bottom: 1%
   left 50%
   transform translate(-50%, 0)
   background: base03(.0)
+  color base0()
+  font-family Anonymous Pro
   //border:1px solid base02(.25)
   //border-radius:10px
+
+  .widget-title
+    text-align: center
+    padding 4px 6px
+    margin-bottom 1ex
+    font-size 14px
+    font-weight 100
+    border-top solid 1px base02()
+    border-bottom solid 1px base02()
+    //background-color base02()
+    //border-radius 5px
 
   .service
     text-align:center
@@ -104,13 +118,11 @@ style: """
     width:32px
 
   .primaryInfo, .secondaryInfo
-    font-family: Helvetica Neue
     padding:0px
     margin:2px
 
   .primaryInfo
     font-size:10pt
-    //font-weight:bold
     color: base0()
 
   .secondaryInfo
