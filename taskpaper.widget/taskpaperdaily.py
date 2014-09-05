@@ -13,23 +13,24 @@ A script to filter taskpaper files for actual tasks
 
 import sys
 import codecs
+import json
 import argparse
 import datetime as dt
 import logging
 __logger__ = logging.getLogger(__name__)
 import logging.handlers
 
-#FIXME there seems to be a bug in the parser, which handles sinle word projects incorrect
+#FIXME there seems to be a bug in the parser, which handles single word projects incorrect
 import tp_light_parse_022 as tplp
 
 __FILES__ = [
-    #"/Users/krid/Dropbox/_Notes/00-Inbox.taskpaper",
-    #"/Users/krid/Dropbox/_Notes/10-Work.taskpaper",
-    #"/Users/krid/Dropbox/_Notes/20-Home.taskpaper",
+    "/Users/krid/Dropbox/_Notes/00-Inbox.taskpaper",
+    "/Users/krid/Dropbox/_Notes/10-Work.taskpaper",
+    "/Users/krid/Dropbox/_Notes/20-Home.taskpaper",
     #"/Users/krid/Dropbox/_Notes/30-doing.taskpaper",
-    #"/Users/krid/Dropbox/_Notes/40-Studenten.taskpaper",
-    #"/Users/krid/Dropbox/_Notes/50-Geschenke.taskpaper",
-    "/Users/krid/Dropbox/_Notes/99-HowToOrganizeTaskPaper.taskpaper",
+    "/Users/krid/Dropbox/_Notes/40-Studenten.taskpaper",
+    "/Users/krid/Dropbox/_Notes/50-Geschenke.taskpaper",
+    #"/Users/krid/Dropbox/_Notes/99-HowToOrganizeTaskPaper.taskpaper",
 ]
 
 class PrintTP(object):
@@ -87,22 +88,20 @@ class PrintTP(object):
         #elif task['tags'].has_key('due'):
             #__logger__.debug("%s", task['tags']['due'])
 
-    def _handle_item(self, item):
+    def _handle_items(self):
         """
         ruft ggf. handle_task
         """
-        # ok, a project may have a due-date
-        if item['type'] == 'project':
-            self._handle_task(item['text'], item)
-            for task in item['chiln']:
-                if self._tpc[task]['type'] == 'project':
-                    self._handle_task(item['text'], self._tpc[task])
-                else:
-                    __logger__.debug("Assign item: id%s, Type:%s, Name%s" %
-                                     (self._tpc[task]['id'], self._tpc[task]['type'], self._tpc[task]['text'][:10]))
-                    self._handle_item(self._tpc[task])
-        elif item['type'] == 'task':
-            self._handle_task(item['text'], item)
+
+        #go over each item ...
+        for item in self._tpc:
+            if item['type'] == 'project':
+                self._handle_task(item['text'], item)
+
+            elif item['type'] == 'task':
+                self._handle_task(self._tpc[item['parentID']]['text'], item)
+            else:
+                __logger__.debug("did not handle %s: %s", item['type'], item['text'][:20])
 
     def handle_tp_list(self, tp_file):
         """
@@ -122,9 +121,7 @@ class PrintTP(object):
         __logger__.debug("Read %s", tp_file)
 
         self._tpc = tplp.get_tp_parse(contents)
-        for item in self._tpc:
-            __logger__.debug(item)
-            self._handle_item(item)
+        self._handle_items()
 
     def _print_list_items(self, list_, count_max=3):
         """print the items of a list"""
@@ -133,7 +130,7 @@ class PrintTP(object):
         for item in list_:
             liststring += u"%s\n" % (item)
             count += 1
-            if (count >= count_max) and (self.print_all == False) :
+            if (count >= count_max) and (self.print_all == False):
                 break
         return liststring
 
@@ -176,9 +173,14 @@ class PrintTP(object):
 
         return thestring.encode('utf-8')
 
-    def get_json(self):
-        """ return the parsed result as JSON """
-        pass
+    def get_json_str(self):
+        """return the parsed result as JSON"""
+        __logger__.info("dump as JSON, print_all: %s", str(self.print_all))
+        if self.print_all:
+            return json.dumps(self.lists)
+            #return json.dumps({"tasks": self.lists})
+        else:
+            return json.dumps(self.lists.keys())
 
 def main():
     """the working cow"""
@@ -200,7 +202,7 @@ def main():
                         action="store_true",
                         help="do debugging to stderr")
     parser.add_argument("-a",
-                        "--print-all",
+                        "--all",
                         default=False,
                         action="store_true",
                         help="print all items")
@@ -236,7 +238,7 @@ def main():
     __logger__.info("Run for %s", thisday)
     ptp = PrintTP(thisday)
 
-    if options.print_all or options.debug:
+    if options.all or options.debug:
         ptp.print_all = True
 
     ###########################
@@ -244,7 +246,10 @@ def main():
     for thefile in __FILES__:
         ptp.handle_tp_list(thefile)
 
-    __logger__.debug(ptp)
+    __logger__.info(ptp)
+
+    if options.json:
+        sys.stdout.write(ptp.get_json_str())
 
     __logger__.info("End run for %s", thisday)
 
