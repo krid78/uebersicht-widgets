@@ -7,6 +7,21 @@ refreshFrequency: 900000
 
 style: """
   //@import '/solarized.styl'
+  solbg(dark=true, a=1)
+    if dark
+      base03(a)
+    else
+      base3(a)
+  solbghl(dark=true, a=1)
+    if dark
+      base02(a)
+    else
+      base2(a)
+  solbody(dar=true, a=1)
+    if dark
+      base0(a)
+    else
+      base00(a)
   base03(a=1)
     rgba(00,43,54,a) // #002b36
   base02(a=1)
@@ -40,16 +55,20 @@ style: """
   sgreen(a=1)
     rgba(133,153,0,a) // #859900
 
-  marbot = 2%
+  flavour=light
+  //flavour=dark
 
-  // position
+  // Position this where you want
   top 1%
   left 2%
-  //width 30%
-  color base0()
-  font-family Anonymous Pro
+
+  // Statistics text settings
+  color: base0()
+  font-family "Helvetica Neue"
+  font-weight normal
   font-size 12px
-  //border solid 1px base02()
+  //width 30%
+  //border solid 1px slobghl(flavour)
 
   .container
     margin 0px
@@ -59,9 +78,9 @@ style: """
   .tlist-head
     padding 4px 6px
     margin-bottom 1ex
-    font-size 14px
     text-transform uppercase
-    font-weight 100
+    font-size 1.1em
+    font-weight 200
     border-top solid 1px base02()
     border-bottom solid 1px base02()
     width 60%
@@ -70,13 +89,12 @@ style: """
 
   ul
     padding 0px
-    margin auto 0px marbot 0px
+    margin auto 0px 2% 0px
 
   li
     padding 0.4%
     margin 0px
     list-style none
-    //font-weight 100
     //border solid 1px base02()
 
   ul li:before
