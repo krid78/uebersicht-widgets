@@ -50,8 +50,9 @@ style: """
 
   // Statistics text settings
   color base0()
-  font-family Anonymous Pro
-  //background rgba(#fff, .0)
+  font-family "Helvetica Neue"
+  font-weight normal
+  font-size 12px
   padding 10px 10px 15px
   border-radius 5px
 
@@ -62,30 +63,27 @@ style: """
     clear: both
 
   .widget-title
-    text-align: widget-align
+    text-align: center
+    text-transform uppercase
+    padding 4px 6px
+    margin-bottom 1ex
+    font-size 1.17em
+    font-weight 200
+    border-top solid 1px base02()
+    border-bottom solid 1px base02()
 
   .stats-container
     margin-bottom 5px
     border-collapse collapse
 
   td
-    font-size: 14px
+    font-size: 1.2em
     font-weight: 300
     color: base01()
     text-align: widget-align
 
-  .widget-title
-    text-align: center
-    text-transform uppercase
-    padding 4px 6px
-    margin-bottom 1ex
-    font-size 14px
-    font-weight 100
-    border-top solid 1px base02()
-    border-bottom solid 1px base02()
-
   .label
-    font-size 8px
+    font-size 0.8em
     text-transform uppercase
     font-weight bold
 
