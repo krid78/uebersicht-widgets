@@ -37,11 +37,14 @@ style: """
   sgreen(a=1)
     rgba(133,153,0,a) // #859900
 
-  // position
+  // Position this where you want
   bottom 1%
   left 2%
-  color base0()
-  font-family Anonymous Pro
+
+  // Statistics text settings
+  color: base0()
+  font-family "Helvetica Neue"
+  font-weight normal
   font-size 12px
 
   .container
@@ -51,8 +54,8 @@ style: """
     text-align: center
     padding 4px 6px
     margin-bottom 1ex
-    font-size 14px
-    font-weight 100
+    font-size  1.17em
+    font-weight 200
     border-top solid 1px base02()
     border-bottom solid 1px base02()
     //background-color base02()
