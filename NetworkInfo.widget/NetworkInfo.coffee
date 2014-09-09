@@ -17,20 +17,26 @@ refreshFrequency: 10000
 
 # Render the output.
 render: (output) -> """
-  <div class="widget-title">Network Info</div>
+  <div id="title" class="widget-title">Network Info</div>
   <table id='services'></table>
 """
 
 # Update the rendered output.
 update: (output, domEl) ->
-  dom = $(domEl)
-
   # Parse the JSON created by the shell script.
   data = JSON.parse output
   html = ""
 
+  title = $(domEl).find("#title")
+  console.log("Title1 #{title}")
+  console.log("Title2 " + title)
+  title.empty()
+  $("<span>Network Info: </span>").appendTo(title)
+
   # Loop through the services in the JSON.
   for svc in data.service
+
+    $("<span>#{svc.ssid}</span>").appendTo(title)
 
     # Start building our table cell.
     html += "<td class='service'>"

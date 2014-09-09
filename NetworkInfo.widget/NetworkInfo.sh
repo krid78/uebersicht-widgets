@@ -11,10 +11,8 @@ exportService() {
   echo '  {'
   echo '    "name":"'$1'",'
   echo '    "ipaddress":"'$2'",'
-  echo '    "macaddress":"'$3'"'
-  if [[ "x" != "x"$4 ]]; then
-    echo '    "ssid":"'$4'"'
-  fi
+  echo '    "macaddress":"'$3'",'
+  echo '    "ssid":"'$4'"'
   echo '  }'
 }
 
@@ -42,12 +40,10 @@ fi
 NWSERVICE=($(networksetup -getinfo "${NWDEVICE}"))
 ip=${NWSERVICE[1]}
 mac=${NWSERVICE[@]: -1:1}
-IFS="
- "
-DEVICENAME=($(networksetup -listallhardwareports |grep -A2 Wi-Fi))
-AIRPORT=($(networksetup -getairportnetwork "${DEVICENAME[4]}"))
+HWPORTINFO=($(networksetup -listallhardwareports |grep -A2 "${NWDEVICE}"))
+AIRPORT=($(networksetup -getairportnetwork "${HWPORTINFO[1]#*: }"))
 if [[ $? -eq 0 ]]; then
-  exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }" "${AIRPORT[3]}"
+  exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }" "${AIRPORT#*: }"
 else
   exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }"
 fi
