@@ -12,6 +12,9 @@ exportService() {
   echo '    "name":"'$1'",'
   echo '    "ipaddress":"'$2'",'
   echo '    "macaddress":"'$3'"'
+  if [[ "x" != "x"$4 ]]; then
+    echo '    "ssid":"'$4'"'
+  fi
   echo '  }'
 }
 
@@ -39,7 +42,15 @@ fi
 NWSERVICE=($(networksetup -getinfo "${NWDEVICE}"))
 ip=${NWSERVICE[1]}
 mac=${NWSERVICE[@]: -1:1}
-exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }"
+IFS="
+ "
+DEVICENAME=($(networksetup -listallhardwareports |grep -A2 Wi-Fi))
+AIRPORT=($(networksetup -getairportnetwork "${DEVICENAME[4]}"))
+if [[ $? -eq 0 ]]; then
+  exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }" "${AIRPORT[3]}"
+else
+  exportService "${NWDEVICE}" "${ip#*: }" "${mac#*: }"
+fi
 done
 
 # End the JSON
