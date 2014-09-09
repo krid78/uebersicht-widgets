@@ -37,11 +37,16 @@ style: """
   sgreen(a=1)
     rgba(133,153,0,a) // #859900
 
+  // Position this where you want
   top 1%
   right 10%
   //transform translate(-50%, 0)
+
+  // Statistics text settings
   color: base0()
-  font-family Anonymous Pro
+  font-family "Helvetica Neue"
+  font-weight normal
+  font-size 12px
 
   table
     border-collapse: collapse
@@ -54,18 +59,18 @@ style: """
 
   thead tr
     &:first-child td
-      font-size: 14px
-      font-weight: 100
+      font-size  1.17em
+      font-weight 200
       border-top solid 1px base02()
       border-bottom solid 1px base02()
 
     &:last-child td
-      font-size: 11px
+      font-size: 0.95em
       padding-bottom: 10px
       font-weight: 500
 
   tbody td
-    font-size: 12px
+    font-size: 1em
 
   .today
     font-weight: bold
