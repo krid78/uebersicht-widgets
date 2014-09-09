@@ -61,12 +61,16 @@ style: """
   sgreen(a=1)
     rgba(133,153,0,a) // #859900
 
+  // Position this where you want
   left: 0px
   top: 50%
-  font-family Anonymous Pro
-  font-size: 12px
-  color base0()
   transform translate(0, -50%)
+
+  // Statistics text settings
+  color: base0()
+  font-family "Helvetica Neue"
+  font-weight normal
+  font-size 12px
 
   .scale
     display inline-block
