@@ -28,15 +28,14 @@ update: (output, domEl) ->
   html = ""
 
   title = $(domEl).find("#title")
-  console.log("Title1 #{title}")
-  console.log("Title2 " + title)
   title.empty()
   $("<span>Network Info: </span>").appendTo(title)
 
   # Loop through the services in the JSON.
   for svc in data.service
 
-    $("<span>#{svc.ssid}</span>").appendTo(title)
+    if svc.ssid != '' and svc.ssid != 'You are not associated with an AirPort network.'
+        $("<span>#{svc.ssid}</span>").appendTo(title)
 
     # Start building our table cell.
     html += "<td class='service'>"
