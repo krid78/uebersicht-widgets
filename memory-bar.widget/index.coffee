@@ -1,6 +1,6 @@
 command: "memory_pressure && sysctl -a | grep memsize"
 
-refreshFrequency: 2000
+refreshFrequency: 5000
 
 style: """
   //@import 'calendar.widget/solarized.styl'

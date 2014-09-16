@@ -13,7 +13,7 @@
 command: "NetworkInfo.widget/NetworkInfo.sh"
 
 # Set the refresh frequency (milliseconds).
-refreshFrequency: 10000
+refreshFrequency: 30000
 
 # Render the output.
 render: (output) -> """
