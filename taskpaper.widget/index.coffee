@@ -7,21 +7,6 @@ refreshFrequency: 900000
 
 style: """
   //@import '/solarized.styl'
-  solbg(dark=true, a=1)
-    if dark
-      base03(a)
-    else
-      base3(a)
-  solbghl(dark=true, a=1)
-    if dark
-      base02(a)
-    else
-      base2(a)
-  solbody(dar=true, a=1)
-    if dark
-      base0(a)
-    else
-      base00(a)
   base03(a=1)
     rgba(00,43,54,a) // #002b36
   base02(a=1)
@@ -63,17 +48,17 @@ style: """
   left 2%
 
   // Statistics text settings
-  color: base0()
+  color: base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
-  //width 30%
+  width 30%
   //border solid 1px slobghl(flavour)
 
   .container
     margin 0px
     //width 220px
-    //border solid 1px base02()
+    //border solid 1px base2()
 
   .tlist-head
     padding 4px 6px
@@ -81,10 +66,10 @@ style: """
     text-transform uppercase
     font-size 1.1em
     font-weight 200
-    border-top solid 1px base02()
-    border-bottom solid 1px base02()
+    border-top solid 1px base2()
+    border-bottom solid 1px base2()
     width 60%
-    //background-color base02()
+    //background-color base2()
     //border-radius 5px
 
   ul
@@ -95,7 +80,7 @@ style: """
     padding 0.4%
     margin 0px
     list-style none
-    //border solid 1px base02()
+    //border solid 1px base2()
 
   ul li:before
     content '»'

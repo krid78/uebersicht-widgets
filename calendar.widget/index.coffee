@@ -43,7 +43,7 @@ style: """
   //transform translate(-50%, 0)
 
   // Statistics text settings
-  color: base0()
+  color: base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
@@ -61,8 +61,8 @@ style: """
     &:first-child td
       font-size  1.17em
       font-weight 200
-      border-top solid 1px base02()
-      border-bottom solid 1px base02()
+      border-top solid 1px base2()
+      border-bottom solid 1px base2()
 
     &:last-child td
       font-size: 0.95em
@@ -74,7 +74,7 @@ style: """
 
   .today
     font-weight: bold
-    background: base02()
+    background: base2()
     border-radius: 45%
 """
 

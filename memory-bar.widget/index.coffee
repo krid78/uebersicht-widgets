@@ -1,4 +1,4 @@
-command: "memory_pressure && sysctl -a | grep memsize"
+command: "memory_pressure && sysctl hw.memsize"
 
 refreshFrequency: 5000
 
@@ -49,7 +49,7 @@ style: """
   //transform translate(-50%, 0)
 
   // Statistics text settings
-  color base0()
+  color base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
@@ -69,8 +69,8 @@ style: """
     margin-bottom 1ex
     font-size 1.17em
     font-weight 200
-    border-top solid 1px base02()
-    border-bottom solid 1px base02()
+    border-top solid 1px base2()
+    border-bottom solid 1px base2()
 
   .stats-container
     margin-bottom 5px
@@ -79,7 +79,7 @@ style: """
   td
     font-size: 1.2em
     font-weight: 300
-    color: base01()
+    color: base1()
     text-align: widget-align
 
   .label
@@ -93,7 +93,7 @@ style: """
     border-radius: bar-height
     float: widget-align
     clear: both
-    background: base02()
+    background: base2()
     position: absolute
     margin-bottom: 5px
 
@@ -178,7 +178,7 @@ update: (output, domEl) ->
   activePages = lines[12].split(": ")[1]
   wiredPages = lines[16].split(": ")[1]
 
-  totalBytes = lines[28].split(" = ")[1]
+  totalBytes = lines[28].split(": ")[1]
   $(domEl).find(".total").text usageFormat(totalBytes / 1024 / 1024)
 
   updateStat 'free', freePages, totalBytes

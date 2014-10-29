@@ -13,7 +13,7 @@
 command: "NetworkInfo.widget/NetworkInfo.sh"
 
 # Set the refresh frequency (milliseconds).
-refreshFrequency: 30000
+refreshFrequency: 15000
 
 # Render the output.
 render: (output) -> """
@@ -43,10 +43,10 @@ update: (output, domEl) ->
     # If there is an IP Address, we should show the connected icon. Otherwise we show the disable icon.
     # If there is no IP Address, we show "Not Connected" rather than the missing IP Address.
     if svc.ipaddress == ''
-      html += "  <img class='icon' src='NetworkInfo.widget/images/" + svc.name + "_disabled.png'/>"
+      html += "  <img class='icon' src='NetworkInfo.widget/images/light_" + svc.name + "_disabled.png'/>"
       html += "  <p class='primaryInfo'>Not Connected</p>"
     else
-      html += "  <img class='icon' src='NetworkInfo.widget/images/" + svc.name + ".png'/>"
+      html += "  <img class='icon' src='NetworkInfo.widget/images/light_" + svc.name + ".png'/>"
       html += "  <p class='primaryInfo'>" + svc.ipaddress + "</p>"
 
     # Show the Mac Address.
@@ -98,13 +98,13 @@ style: """
   transform translate(-50%, 0)
 
   // Statistics text settings
-  color base0()
+  color base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
   margin:0
   padding:0px
-  //border:1px solid base02(.25)
+  //border:1px solid base2(.25)
   //border-radius:10px
 
   .widget-title
@@ -113,9 +113,9 @@ style: """
     margin-bottom 1ex
     font-size  1.17em
     font-weight 200
-    border-top solid 1px base02()
-    border-bottom solid 1px base02()
-    //background-color base02()
+    border-top solid 1px base2()
+    border-bottom solid 1px base2()
+    //background-color base2()
     //border-radius 5px
 
   .service
@@ -132,9 +132,9 @@ style: """
 
   .primaryInfo
     font-size 1em
-    color  base0()
+    color  base00()
 
   .secondaryInfo
     font-size 0.85em
-    color  base01()
+    color  base1()
 """

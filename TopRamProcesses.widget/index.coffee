@@ -43,7 +43,7 @@ style: """
   //transform translate(-50%, 0)
 
   // Statistics text settings
-  color base0()
+  color base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
@@ -57,9 +57,9 @@ style: """
     margin-bottom 1ex
     font-size  1.17em
     font-weight 200
-    border-top solid 1px base02()
-    border-bottom solid 1px base02()
-    //background-color base02()
+    border-top solid 1px base2()
+    border-bottom solid 1px base2()
+    //background-color base2()
     //border-radius 5px
 
   table
@@ -98,10 +98,10 @@ style: """
     color syellow()
 
   .memp-raised
-    color base1()
+    color base01()
 
   .memp-normal
-    color base0()
+    color base00()
 
 
 """
