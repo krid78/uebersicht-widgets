@@ -67,7 +67,7 @@ style: """
   transform translate(0, -50%)
 
   // Statistics text settings
-  color: base0()
+  color: base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
@@ -83,7 +83,7 @@ style: """
     display inline-block
     height 248px
     width 1px
-    background-color base1()
+    background-color base01()
     opacity 0.5
     margin-bottom 2px
     overflow hidden
@@ -91,7 +91,7 @@ style: """
   .revealer
     width 1px
     height 100%
-    background-color base03()
+    background-color base3()
     opacity 0.5
 """
 
