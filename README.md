@@ -54,6 +54,7 @@ This is a fancy way of showing the current tm status. I only adapted the colors 
 
 # TODO
 
+	- check energy consumption of the widgets
 	- rework update function @NetworkInfo
 		- currently it's redrawn at each update
 		- it would be better to only redraw on changes
