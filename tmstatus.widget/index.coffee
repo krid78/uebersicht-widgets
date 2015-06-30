@@ -19,10 +19,10 @@ refreshFrequency: 15000
 
 render: (output)->"""
   <div class='container'>
+    <div class='scale'><p>100% - </p><p>75% - </p><p>50% - </p><p>25% - </p><p>0% - </p></div>
     <div class='indicator-container'>
       <div class='revealer'></div>
-    </div>
-    <div class='scale'><p> - 100%</p><p> - 75%</p><p> - 50%</p><p> - 25%</p><p> - 0%</p></div>
+      </div>
   </div>
   """
 
@@ -62,37 +62,38 @@ style: """
     rgba(133,153,0,a) // #859900
 
   // Position this where you want
-  left: 0px
-  top: 50%
+  right 10px
+  top 50%
   transform translate(0, -50%)
 
   // Statistics text settings
-  color: base00()
+  color base00()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
 
   .scale
     display inline-block
-    opacity 0.7
+    color: base1()
 
   .scale p
+    text-align right
     line-height 50px
 
   .indicator-container
     display inline-block
-    height 248px
-    width 1px
-    background-color base01()
-    opacity 0.5
+    height 250px
+    width 4px
+    background-color sgreen()
+    border-radius 2px
     margin-bottom 2px
     overflow hidden
 
   .revealer
-    width 1px
+    width 4px
     height 100%
-    background-color base3()
-    opacity 0.5
+    background-color base2()
+    border-radius 2px
 """
 
 update: (output, domEl) ->
