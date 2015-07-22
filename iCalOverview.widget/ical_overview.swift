@@ -267,13 +267,13 @@ class CalendarTool
             else if argument == ("-i") || argument == "--include"
             {
                 let include = Process.arguments[i+1]
-                println(include)
-
+                if (debuggingMode){println(include)}
                 includeArray = split(include) {$0 == ","}
             }
             else if argument == ("-e") || argument == ("--exclude")
             {
                 let exclude = Process.arguments[i+1]
+                if (debuggingMode){println(exclude)}
                 excludeArray = split(exclude) {$0 == ","}
 
             }
