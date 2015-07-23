@@ -124,7 +124,7 @@ update: (output, domEl) ->
   for tlist in ['today', 'tomorrow', 'overdue', 'urgent', 'upcomming', 'outdated', 'someday']
     if tasklists[tlist].length < 1
       continue
-    console.log("tlist: "+tlist)
+    # console.log("tlist: "+tlist)
     headline = $("<div></div>").appendTo(container)
     headline.addClass("tlist-head")
     headline.append("#{tlist}")
