@@ -1,16 +1,8 @@
-# show icalBudy
+# show upcomming calendar events
 
-command: "/usr/local/bin/icalBuddy \
---separateByDate \
---noRelativeDates \
---noPropNames \
---includeOnlyEventsFromNowOn \
---maxNumNoteChars 30 \
---bullet '» ' \
---includeCalTypes \
-birthday,exchange,imap,local,subscription,icloud \
---excludeEventProps location,url,attendees \
-eventsToday+3"
+command: "/usr/bin/swift iCalOverview.widget/ical_overview.swift \
+--tage 4 \
+--include Daniel,krid,WICHTIG,Jenny\\ Privat,Jenny\\ Büro,Henriette,Family,Auto\\ unterwegs,Geburtstage,Deutsche\\ Feiertage"
 
 # refersh every 15 minutes
 refreshFrequency: 900000
@@ -120,18 +112,32 @@ style: """
 
 render: -> """
   <div class="container">
-    <div id="icalBudy">
+    <div id="icallist">
     </div>
   </div>
 """
 
 update: (output, domEl) ->
-  container = $(domEl).find("#icalBudy")
+  console.log('EventsForNextDays')
+  dateObjectList = JSON.parse output
+  container = $(domEl).find("#icallist")
   container.empty()
 
-  lines = output.split("\n")
+  for dateObject in dateObjectList['EventsForNextDays']
+    date = Object.keys(dateObject)[0]
+    console.log(date)
+    for calendarObject in dateObject[date]
+      calendars =  Object.keys(calendarObject)
+      console.log(calendars)
 
-  for line in lines
-    container.append("#{line}<br\>")
+  #   container.append("#{line}<br\>")
+  #   headline = $("<div></div>").appendTo(container)
+  #   headline.addClass("elsit-head")
+  #   headline.append("#{elsit}")
+  #   list = $("<ul></ul>").appendTo(container)
+  #   list.addClass("#{elsit}")
+  #   for task in tasklists[elsit]
+  #     litem = $("<li></li>").appendTo(list)
+  #     litem.append("#{task}")
 
 # vim: ts=2:sts=2:sw=2
