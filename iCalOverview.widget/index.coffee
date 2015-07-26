@@ -61,7 +61,7 @@ style: """
     //width 220px
     //border solid 1px base2()
 
-  .tlist-head
+  .adate
     padding 4px 6px
     margin-bottom 1ex
     font-size 1.2em
@@ -87,22 +87,22 @@ style: """
     content '»'
     margin 0 .6em
 
-  ul.today li:before
+  ul.daniel li:before
     color scyan()
 
-  ul.tomorrow li:before
+  ul.krid li:before
     color sgreen()
 
-  ul.overdue li:before
+  ul.WICHTIG li:before
     color sred()
 
-  ul.urgent li:before
+  ul.JennyPrivat li:before
     color smagenta()
 
-  ul.upcomming li:before
+  ul.JennyBüro li:before
     color sblue()
 
-  ul.outdated li:before
+  ul.Henriette li:before
     color syellow()
 
   ul.someday li:before
@@ -124,20 +124,31 @@ update: (output, domEl) ->
   container.empty()
 
   for dateObject in dateObjectList['EventsForNextDays']
-    date = Object.keys(dateObject)[0]
-    console.log(date)
-    for calendarObject in dateObject[date]
+    dates = Object.keys(dateObject)
+    console.log(dates)
+
+    if dates.length != 1
+      console.log("More than one date!")
+
+    headline = $("<div></div>").appendTo(container)
+    headline.addClass("adate")
+    headline.append("#{dates[0]}")
+
+    for calendarObject in dateObject[dates[0]]
       calendars =  Object.keys(calendarObject)
       console.log(calendars)
 
-  #   container.append("#{line}<br\>")
-  #   headline = $("<div></div>").appendTo(container)
-  #   headline.addClass("elsit-head")
-  #   headline.append("#{elsit}")
-  #   list = $("<ul></ul>").appendTo(container)
-  #   list.addClass("#{elsit}")
-  #   for task in tasklists[elsit]
-  #     litem = $("<li></li>").appendTo(list)
-  #     litem.append("#{task}")
+      if calendars.length != 1
+        console.log("More than one calendar!")
+
+      list = $("<ul></ul>").appendTo(container)
+      list.addClass("#{calendars[0].replace(" ","")}")
+
+      for eventObject in calendarObject[calendars[0]]
+        events =  Object.keys(eventObject)
+        console.log(events)
+
+        litem = $("<li></li>").appendTo(list)
+        litem.append("#{eventObject['titel']}")
 
 # vim: ts=2:sts=2:sw=2
