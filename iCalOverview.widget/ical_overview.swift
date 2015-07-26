@@ -242,7 +242,7 @@ class CalendarTool
 
     func JSONObjectForNextDays(numberOfDays:Int)->String
     {
-        return "{EventsForNextDays:\(dateArrayForNextDays(numberOfDays-1))}"
+        return "{\"EventsForNextDays\":\(dateArrayForNextDays(numberOfDays-1))}"
     }
 
     func initializeParameters()
