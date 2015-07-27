@@ -74,20 +74,25 @@ style: """
     //border-radius 5px
 
   ul
+    display table
     padding 0px
     margin auto 0px 2% 0px
 
   li
     padding 0.4%
     margin 0px
+    display: table-row
     list-style none
     //border solid 1px base2()
 
   ul li:before
     content '»'
-    margin 0 .6em
+    //margin 0 .6em
+    padding 0 .6em
+    display table-cell
+    //border solid 1px base2()
 
-  ul.daniel li:before
+  ul.Daniel li:before
     color scyan()
 
   ul.krid li:before
@@ -97,16 +102,26 @@ style: """
     color sred()
 
   ul.JennyPrivat li:before
-    color smagenta()
+    color sorange()
 
   ul.JennyBüro li:before
-    color sblue()
+    color sorange()
 
   ul.Henriette li:before
+    color sblue()
+
+  ul.Family li:before
     color syellow()
 
-  ul.someday li:before
-    //color syellow()
+  ul.Autounterwegs li:before
+    color sviolet()
+
+  ul.Geburtstage li:before
+    color smagenta()
+
+  ul.DeutscheFeiertage li:before
+    color smagenta()
+
 
 """
 
@@ -146,9 +161,10 @@ update: (output, domEl) ->
 
       for eventObject in calendarObject[calendars[0]]
         events =  Object.keys(eventObject)
+        console.log(eventObject)
         console.log(events)
 
         litem = $("<li></li>").appendTo(list)
-        litem.append("#{eventObject['titel']}")
+        litem.append("#{eventObject['titel']}<br />#{eventObject['start']} - #{eventObject['ende']} Uhr")
 
-# vim: ts=2:sts=2:sw=2
+# vim: expandtab:ts=2:sts=2:sw=2
