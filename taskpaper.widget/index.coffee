@@ -120,7 +120,7 @@ update: (output, domEl) ->
   tasklists = JSON.parse output
   container = $(domEl).find("#tasklists")
   container.empty()
-  #for tlist of tasklists
+  # for tlist of tasklists
   for tlist in ['today', 'tomorrow', 'overdue', 'urgent', 'upcomming', 'outdated', 'someday']
     if tasklists[tlist].length < 1
       continue
