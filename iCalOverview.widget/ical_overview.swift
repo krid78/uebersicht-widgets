@@ -79,7 +79,7 @@ class CalendarTool
 
 
         if(debuggingMode){
-            println("Eventobjekt: \(eventString)")
+            print("Eventobjekt: \(eventString)")
         }
         return eventString
     }
@@ -119,7 +119,7 @@ class CalendarTool
             calendars: [calendar])
 
         //holt alle Events die dem Prädikat entsprechen
-        let events = store.eventsMatchingPredicate(predicate) as! [EKEvent]
+        let events = store.eventsMatchingPredicate(predicate)
 
         let eventArrayString = eventArrayForEvents(events)
 
@@ -131,7 +131,7 @@ class CalendarTool
         else
         {
             calendarObjectString = "{\"\(calendar.title)\":\(eventArrayString)}"
-            //if(debuggingMode){println("Kalenderobjekt: \(calendarObjectString)")}
+            //if(debuggingMode){print("Kalenderobjekt: \(calendarObjectString)")}
         }
 
 
@@ -173,8 +173,8 @@ class CalendarTool
         var startDate: NSDate
 
         //zerlegt übergebenes Datum und aktuellen Zeitpunkt in seine Komponenten
-        var dateComponents = nsCalendar.components( .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
-        let todayComponents = nsCalendar.components( .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
+        let dateComponents = nsCalendar.components([.Year, .Month, .Day], fromDate: date)
+        let todayComponents = nsCalendar.components([.Year, .Month, .Day], fromDate: NSDate())
 
         //Wenn das übergebene Datum heute ist, wähle aktuellen Zeitpunkt (also ab aktueller Uhrzeit) als Startzeitpunkt
         //Sonst wähle Tagesbeginn
@@ -201,7 +201,7 @@ class CalendarTool
         else
         {
             dateObject = "{\"\(dateFormatterDatum.stringFromDate(date))\":\(calendarArrayForDate(startDate, endDate: endDate!, calendars: calendars))}"
-            if(debuggingMode){println("Datumobjekt: \(dateObject)")}
+            if(debuggingMode){print("Datumobjekt: \(dateObject)")}
         }
         return dateObject
     }
@@ -250,31 +250,31 @@ class CalendarTool
 
         let arguments = Process.arguments
 
-        if contains(arguments, "-d") || contains(arguments, "--debug")
+        if arguments.contains("-d") || arguments.contains("--debug")
         {
             debuggingMode = true
-            println("debugging mode");
+            print("debugging mode");
         }
 
         for var i = 0; i <= Process.arguments.count-1; i++
         {
-            var argument = Process.arguments[i]
+            let argument = Process.arguments[i]
             if argument ==  "-t" || argument == "--tage"
             {
-                tage = Process.arguments[i+1].toInt()!
-                if (debuggingMode){println("Parameter: \(tage) Tage")}
+                tage = Int(Process.arguments[i+1])! //.toInt()!
+                if (debuggingMode){print("Parameter: \(tage) Tage")}
             }
             else if argument == ("-i") || argument == "--include"
             {
                 let include = Process.arguments[i+1]
-                if (debuggingMode){println(include)}
-                includeArray = split(include) {$0 == ","}
+                if (debuggingMode){print(include)}
+                includeArray = include.componentsSeparatedByString(",")
             }
             else if argument == ("-e") || argument == ("--exclude")
             {
                 let exclude = Process.arguments[i+1]
-                if (debuggingMode){println(exclude)}
-                excludeArray = split(exclude) {$0 == ","}
+                if (debuggingMode){print(exclude)}
+                excludeArray = exclude.componentsSeparatedByString(",")
 
             }
             else{()}
@@ -289,11 +289,11 @@ class CalendarTool
 
 
         // Erfragt Zugang zu Entities vom Typ "Event" lokalen Store, gibt Erfolg in "granted: bool" zurück + evtl Fehlermeldung in "error: NSError"
-        store.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+        store.requestAccessToEntityType(EKEntityType.Event, completion: {
             granted, error in
         })
 
-        var allCalendars = store.calendarsForEntityType(EKEntityTypeEvent) as! [EKCalendar]
+        let allCalendars = store.calendarsForEntityType(EKEntityType.Event)
 
 
 
@@ -328,10 +328,10 @@ class CalendarTool
 
         if(debuggingMode)
         {
-            println("Kalender geladen:")
+            print("Kalender geladen:")
             for cal in calendars
             {
-                println(cal.title)
+                print(cal.title)
             }
         }
     }
@@ -340,7 +340,7 @@ class CalendarTool
 
 var calTool = CalendarTool()
 
-println(calTool.getJSON())
+print(calTool.getJSON())
 
 
 
