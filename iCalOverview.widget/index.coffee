@@ -2,7 +2,7 @@
 
 command: "/usr/bin/swift iCalOverview.widget/ical_overview.swift \
 --tage 4 \
---include Daniel,krid,WICHTIG,Jenny\\ Privat,Jenny\\ Büro,Henriette,Family,Auto\\ unterwegs,Geburtstage,Deutsche\\ Feiertage"
+--include Daniel,krid,WICHTIG,Jenny\\ Privat,Jenny\\ Büro,Henriette,Family,Auto\\ unterwegs,Deutsche\\ Feiertage"
 
 # refersh every 15 minutes
 refreshFrequency: 900000
