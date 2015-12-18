@@ -71,7 +71,7 @@ class CalendarTool
     {
         var eventString = "{"
 
-        eventString += "\"titel\": \"\(event.title)\","
+        eventString += "\"titel\": \"\(event.title.stringByReplacingOccurrencesOfString("\"", withString: "\\\""))\","
         eventString += "\"start\": \"\(dateFormatterUhrzeit.stringFromDate(event.startDate))\","
         eventString += "\"ende\": \"\(dateFormatterUhrzeit.stringFromDate(event.endDate))\""
 
