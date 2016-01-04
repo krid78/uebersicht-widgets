@@ -54,9 +54,9 @@ This is a fancy way of showing the current tm status. I only adapted the colors 
 
 # TODO
 
-	- check energy consumption of the widgets @done(2014-10-26)
-	- rework update function @NetworkInfo
-		- currently it's redrawn at each update
-		- it would be better to only redraw on changes
-	- Create Widget-Bundle for TopCpuProcesses and TopRamProcesses
-    - Implement a better ical-budy like tool
+- [x] check energy consumption of the widgets @done(2014-10-26)
+- [ ] rework update function @NetworkInfo
+    - currently it's redrawn at each update
+    - it would be better to only redraw on changes
+- [ ] Create Widget-Bundle for TopCpuProcesses and TopRamProcesses
+- [x] Implement a better ical-budy like tool @done(2015-06-30)
