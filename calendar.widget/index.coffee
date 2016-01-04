@@ -1,25 +1,53 @@
+# vim: ts=2:sts=2:sw=2
+# show calendar of this month
+
 command: 'python calendar.widget/cal.py monday'
 
+# refersh every 30 minutes
 refreshFrequency: 1800000
 
 style: """
-  //@import 'calendar.widget/solarized.styl'
+  bgcol(l=1, a=1)
+    if l == 1
+      base3(a)
+    else
+      base03(a)
+  bghcol(l=1, a=1)
+    if l == 1
+      base2(a)
+    else
+      base02(a)
+  fgcol(l=1, a=1)
+    if l == 1
+      base0(a)
+    else
+      base00(a)
+  fghcol(l=1, a=1)
+    if l == 1
+      base01(a)
+    else
+      base1(a)
+  comment(l=1, a=1)
+    if l == 1
+      base1(a)
+    else
+      base01(a)
   base03(a=1)
-    rgba(00,43,54,a) // #002b36
+    rgba(00,43,54,a)    // #002b36 dark: bg
   base02(a=1)
-    rgba(07,54,66,a) // #073642
+    rgba(07,54,66,a)    // #073642 dark: bg highlight
   base01(a=1)
-    rgba(88,110,117,a) // #586e75
+    rgba(88,110,117,a)  // #586e75 light: emphasized; dark: comment
   base00(a=1)
-    rgba(101,123,131,a) // #657b83
+    rgba(101,123,131,a) // #657b83 light: std. text
   base0(a=1)
-    rgba(131,148,150,a) // #839496
+    rgba(131,148,150,a) // #839496 dark: std. text
   base1(a=1)
-    rgba(147,161,161,a) // #93a1a1
+    rgba(147,161,161,a) // #93a1a1 light: comment; dark: emphasized
   base2(a=1)
-    rgba(238,232,213,a) // #eee8d5
+    rgba(238,232,213,a) // #eee8d5 light: bg highlight
   base3(a=1)
-    rgba(253,246,227,a) // #fdf6e3
+    rgba(253,246,227,a) // #fdf6e3 light: bg
   syellow(a=1)
     rgba(181,137,0,a) // #b58900
   sorange(a=1)
@@ -43,7 +71,7 @@ style: """
   //transform translate(-50%, 0)
 
   // Statistics text settings
-  color: base00()
+  color: fgcol(1)
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
@@ -61,8 +89,8 @@ style: """
     &:first-child td
       font-size  1.17em
       font-weight 200
-      border-top solid 1px base2()
-      border-bottom solid 1px base2()
+    //border-top solid 1px bghcol(.25)
+    //border-bottom solid 1px bghcol(.25)
 
     &:last-child td
       font-size: 0.95em
@@ -73,9 +101,10 @@ style: """
     font-size: 1em
 
   .today
-    font-weight: bold
-    background: base2()
-    border-radius: 45%
+    font-weight bold
+    //background bghcol(.5)
+    background rgba(#000,.25)
+    border-radius 45%
 """
 
 render: -> """
