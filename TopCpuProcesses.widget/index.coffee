@@ -7,64 +7,87 @@ command: "ps -arcwwwxo \"command %cpu\""
 refreshFrequency: 5000
 
 style: """
+  // the base color selector light or dark
   the-bg = "dark"
+
+  // the actual color definition. For base16, its done in a quite generic way...
+  base00(a=1)     // dark: bg
+    rgba(00,43,54,a)    // #002b36
+  base01(a=1)     // dark: bg highlight
+    rgba(07,54,66,a)    // #073642
+  base02(a=1)     // light: emphasized; dark: comment
+    rgba(88,110,117,a)  // #586e75
+  base03(a=1)     // light: std. text
+    rgba(101,123,131,a) // #657b83
+  base04(a=1)     // dark: std. text
+    rgba(131,148,150,a) // #839496
+  base05(a=1)     // light: comment; dark: emphasized
+    rgba(147,161,161,a) // #93a1a1
+  base06(a=1)     // light: bg highlight
+    rgba(238,232,213,a) // #eee8d5
+  base07(a=1)     // light: bg
+    rgba(253,246,227,a) // #fdf6e3
+  base08(a=1)     // syellow
+    rgba(181,137,0,a)   // #b58900
+  base09(a=1)     // sorange
+    rgba(203,75,22,a)   // #cb4b16
+  base0A(a=1)     // sred
+    rgba(220,50,47,a)   // #dc322f
+  base0B(a=1)     // smagenta
+    rgba(211,54,130,a)  // #d33682
+  base0C(a=1)     // sviolet
+    rgba(108,113,196,a) // #6c71c4
+  base0D(a=1)     // sblue
+    rgba(38,139,210,a)  // #268bd2
+  base0E(a=1)     // scyan
+    rgba(42,161,152,a)  // #2aa198
+  base0F(a=1)     // sgreen
+    rgba(133,153,0,a)   // #859900
+
+  // generic, selector-dependend color selection
   bgcol(a=1)
     if the-bg == "light"
-      base3(a)
+      base07(a)
     else
-      base03(a)
+      base01(a)
   bghcol(a=1)
     if the-bg == "light"
-      base2(a)
+      base06(a)
     else
-      base02(a)
+      base01(a)
   fgcol(a=1)
     if the-bg == "light"
-      base0(a)
+      base03(a)
     else
-      base00(a)
+      base04(a)
   fghcol(a=1)
     if the-bg == "light"
-      base01(a)
+      base02(a)
     else
-      base1(a)
+      base05(a)
   comment(a=1)
     if the-bg == "light"
-      base1(a)
+      base05(a)
     else
-      base01(a)
-  base03(a=1)
-    rgba(00,43,54,a)    // #002b36 dark: bg
-  base02(a=1)
-    rgba(07,54,66,a)    // #073642 dark: bg highlight
-  base01(a=1)
-    rgba(88,110,117,a)  // #586e75 light: emphasized; dark: comment
-  base00(a=1)
-    rgba(101,123,131,a) // #657b83 light: std. text
-  base0(a=1)
-    rgba(131,148,150,a) // #839496 dark: std. text
-  base1(a=1)
-    rgba(147,161,161,a) // #93a1a1 light: comment; dark: emphasized
-  base2(a=1)
-    rgba(238,232,213,a) // #eee8d5 light: bg highlight
-  base3(a=1)
-    rgba(253,246,227,a) // #fdf6e3 light: bg
+      base02(a)
+
+  // solarized equivalenz wrapper
   syellow(a=1)
-    rgba(181,137,0,a) // #b58900
+    base08(a)
   sorange(a=1)
-    rgba(203,75,22,a) // #cb4b16
+    base09(a)
   sred(a=1)
-    rgba(220,50,47,a) // #dc322f
+    base0A(a)
   smagenta(a=1)
-    rgba(211,54,130,a) // #d33682
+    base0B(a)
   sviolet(a=1)
-    rgba(108,113,196,a) // #6c71c4
+    base0C(a)
   sblue(a=1)
-    rgba(38,139,210,a) // #268bd2
+    base0D(a)
   scyan(a=1)
-    rgba(42,161,152,a) // #2aa198
+    base0E(a)
   sgreen(a=1)
-    rgba(133,153,0,a) // #859900
+    base0F(a)
 
   // Position this where you want
   bottom 1%
