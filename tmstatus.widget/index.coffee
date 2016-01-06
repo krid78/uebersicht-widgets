@@ -29,7 +29,7 @@ render: (output)->"""
 
 style: """
   // the base color selector light or dark
-  the-bg = "dark"
+  the-bg = "light"
 
   // the actual color definition. For base16, its done in a quite generic way...
   base00(a=1)     // dark: bg

@@ -10,7 +10,7 @@ refreshFrequency: 900000
 
 style: """
   // the base color selector light or dark
-  the-bg = "dark"
+  the-bg = "light"
 
   // the actual color definition. For base16, its done in a quite generic way...
   base00(a=1)     // dark: bg
@@ -117,8 +117,8 @@ style: """
     text-transform uppercase
     font-weight 200
     width 60%
-    //border-top solid 1px bghcol(.25)
-    //border-bottom solid 1px bghcol(.25)
+    border-top solid 1px bghcol()
+    border-bottom solid 1px bghcol()
     //background-color bghcol()
     //border-radius 5px
 

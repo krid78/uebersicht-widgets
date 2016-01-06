@@ -8,7 +8,7 @@ refreshFrequency: 1800000
 
 style: """
   // the base color selector light or dark
-  the-bg = "dark"
+  the-bg = "light"
 
   // the actual color definition. For base16, its done in a quite generic way...
   base00(a=1)     // dark: bg
@@ -113,8 +113,10 @@ style: """
     &:first-child td
       font-size  1.17em
       font-weight 200
-    //border-top solid 1px bghcol(.25)
-    //border-bottom solid 1px bghcol(.25)
+      border-top solid 1px bghcol()
+      border-bottom solid 1px bghcol()
+    //background-color bghcol(.5)
+    //border-radius 5px
 
     &:last-child td
       font-size: 0.95em
@@ -126,8 +128,8 @@ style: """
 
   .today
     font-weight bold
-    //background bghcol(.5)
-    background rgba(#000,.25)
+    background bghcol(.5)
+    //background rgba(#000,.25)
     border-radius 45%
 """
 

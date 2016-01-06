@@ -8,41 +8,41 @@ refreshFrequency: 5000
 
 style: """
   // the base color selector light or dark
-  the-bg = "dark"
+  the-bg = "light"
 
   // the actual color definition. For base16, its done in a quite generic way...
   base00(a=1)     // dark: bg
-    rgba(#000000, a)
+    rgba(00,43,54,a)    // #002b36
   base01(a=1)     // dark: bg highlight
-    rgba(#303030, a)
+    rgba(07,54,66,a)    // #073642
   base02(a=1)     // light: emphasized; dark: comment
-    rgba(#505050, a)
+    rgba(88,110,117,a)  // #586e75
   base03(a=1)     // light: std. text
-    rgba(#B0B0B0, a)
+    rgba(101,123,131,a) // #657b83
   base04(a=1)     // dark: std. text
-    rgba(#D0D0D0, a)
+    rgba(131,148,150,a) // #839496
   base05(a=1)     // light: comment; dark: emphasized
-    rgba(#E0E0E0, a)
+    rgba(147,161,161,a) // #93a1a1
   base06(a=1)     // light: bg highlight
-    rgba(#F5F5F5, a)
+    rgba(238,232,213,a) // #eee8d5
   base07(a=1)     // light: bg
-    rgba(#FFFFFF, a)
+    rgba(253,246,227,a) // #fdf6e3
   base08(a=1)     // syellow
-    rgba(#FB0120, a)
+    rgba(181,137,0,a)   // #b58900
   base09(a=1)     // sorange
-    rgba(#FC6D24, a)
+    rgba(203,75,22,a)   // #cb4b16
   base0A(a=1)     // sred
-    rgba(#FDA331, a)
+    rgba(220,50,47,a)   // #dc322f
   base0B(a=1)     // smagenta
-    rgba(#A1C659, a)
+    rgba(211,54,130,a)  // #d33682
   base0C(a=1)     // sviolet
-    rgba(#76C7B7, a)
+    rgba(108,113,196,a) // #6c71c4
   base0D(a=1)     // sblue
-    rgba(#6FB3D2, a)
+    rgba(38,139,210,a)  // #268bd2
   base0E(a=1)     // scyan
-    rgba(#D381C3, a)
+    rgba(42,161,152,a)  // #2aa198
   base0F(a=1)     // sgreen
-    rgba(#BE643C, a)
+    rgba(133,153,0,a)   // #859900
 
   // generic, selector-dependend color selection
   bgcol(a=1)
@@ -121,8 +121,10 @@ style: """
     margin-bottom 1ex
     font-size 1.17em
     font-weight 200
-    //border-top solid 1px bghcol(.25)
-    //border-bottom solid 1px bghcol(.25)
+    border-top solid 1px bghcol()
+    border-bottom solid 1px bghcol()
+    //background-color bghcol(.5)
+    //border-radius 5px
 
   .stats-container
     margin-bottom 5px

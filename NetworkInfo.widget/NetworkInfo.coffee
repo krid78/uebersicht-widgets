@@ -44,12 +44,12 @@ update: (output, domEl) ->
     # If there is an IP Address, we should show the connected icon. Otherwise we show the disable icon.
     # If there is no IP Address, we show "Not Connected" rather than the missing IP Address.
     if svc.ipaddress == ''
-      #html += "  <img class='icon' src='NetworkInfo.widget/images/light_" + svc.name + "_disabled.png'/>"
-      html += "  <img class='icon' src='NetworkInfo.widget/images/dark_" + svc.name + "_disabled.png'/>"
+      html += "  <img class='icon' src='NetworkInfo.widget/images/light_" + svc.name + "_disabled.png'/>"
+      #html += "  <img class='icon' src='NetworkInfo.widget/images/dark_" + svc.name + "_disabled.png'/>"
       html += "  <p class='primaryInfo'>Not Connected</p>"
     else
-      #html += "  <img class='icon' src='NetworkInfo.widget/images/light_" + svc.name + ".png'/>"
-      html += "  <img class='icon' src='NetworkInfo.widget/images/dark_" + svc.name + ".png'/>"
+      html += "  <img class='icon' src='NetworkInfo.widget/images/light_" + svc.name + ".png'/>"
+      #html += "  <img class='icon' src='NetworkInfo.widget/images/dark_" + svc.name + ".png'/>"
       html += "  <p class='primaryInfo'>" + svc.ipaddress + "</p>"
 
     # Show the Mac Address.
@@ -62,7 +62,7 @@ update: (output, domEl) ->
 # CSS Style
 style: """
   // the base color selector light or dark
-  the-bg = "dark"
+  the-bg = "light"
 
   // the actual color definition. For base16, its done in a quite generic way...
   base00(a=1)     // dark: bg
@@ -155,7 +155,7 @@ style: """
   font-size 12px
   margin:0
   padding:0px
-  //border:1px solid base2(.25)
+  //border:1px solid base2()
   //border-radius:10px
 
   .widget-title
@@ -164,8 +164,8 @@ style: """
     margin-bottom 1ex
     font-size  1.17em
     font-weight 200
-    //border-top solid 1px bghcol(.25)
-    //border-bottom solid 1px bghcol(.25)
+    border-top solid 1px bghcol()
+    border-bottom solid 1px bghcol()
     //background-color bghcol(.5)
     //border-radius 5px
 
