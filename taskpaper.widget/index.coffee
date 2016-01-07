@@ -90,16 +90,23 @@ style: """
     base0F(a)
 
   // Position this where you want
-  top 1%
-  left 2%
+  bottom 1%
+  left 1%
 
   // Statistics text settings
   color: fgcol()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
-  width 30%
-  //border solid 1px bghcol()
+  min-width 20%
+  max-width 30%
+  min-height 25%
+  max-height 75%
+
+  // background and border
+  // background bghcol(.5)
+  // border:1px solid bghcol()
+  // border-radius:5px
 
   .container
     margin 0px

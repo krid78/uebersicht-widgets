@@ -96,17 +96,22 @@ style: """
   widget-align = left
 
   // Position this where you want
-  bottom 1%
-  right 2%
-  //transform translate(-50%, 0)
+  top 16%
+  left 50%
+  transform translate(-50%, 0)
+  margin:0
+  padding-bottom 10px
 
   // Statistics text settings
   color fgcol(1)
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
-  padding 10px 10px 15px
-  border-radius 5px
+
+  // background and border
+  // background bghcol(.5)
+  // border:1px solid bghcol()
+  // border-radius:5px
 
   .container
     width: 300px

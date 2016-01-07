@@ -90,8 +90,11 @@ style: """
     base0F(a)
 
   // Position this where you want
-  bottom 1%
-  left 2%
+  top 1%
+  left 1%
+  //transform translate(-50%, 0)
+  margin:0
+  padding:0px
 
   // Statistics text settings
   color: fgcol(1)
@@ -99,8 +102,13 @@ style: """
   font-weight normal
   font-size 12px
 
+  // background and border
+  // background bghcol(.5)
+  // border:1px solid bghcol()
+  // border-radius:5px
+
   .container
-    width 180px
+    min-width 180px
 
   .widget-title
     text-align: center

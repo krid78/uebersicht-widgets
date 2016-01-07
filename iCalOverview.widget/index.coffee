@@ -92,18 +92,24 @@ style: """
     base0F(a)
 
   // Position this where you want
-  top 1%
+  bottom 1%
   left 50%
   transform translate(-50%, 0)
-  width 30%
-  //height 75%
+  min-width 20%
+  max-width 30%
+  min-height 25%
+  max-height 75%
 
   // Statistics text settings
   color: fgcol()
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
-  //border solid 1px bghcol()
+
+  // background and border
+  // background bghcol(.5)
+  // border:1px solid bghcol()
+  // border-radius:5px
 
   .container
     margin 0px

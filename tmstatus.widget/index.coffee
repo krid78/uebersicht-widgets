@@ -121,6 +121,11 @@ style: """
   font-weight normal
   font-size 12px
 
+  // background and border
+  // background bghcol(.5)
+  // border:1px solid bghcol()
+  // border-radius:5px
+
   .scale
     display inline-block
 

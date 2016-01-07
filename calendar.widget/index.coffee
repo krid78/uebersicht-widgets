@@ -90,15 +90,20 @@ style: """
     base0F(a)
 
   // Position this where you want
-  top 1%
-  right 10%
-  //transform translate(-50%, 0)
+  bottom 1%
+  left 75%
+  transform translate(-50%, 0)
 
   // Statistics text settings
   color: fgcol(1)
   font-family "Helvetica Neue"
   font-weight normal
   font-size 12px
+
+  // background and border
+  // background bghcol(.5)
+  // border:1px solid bghcol()
+  // border-radius:5px
 
   table
     border-collapse: collapse
