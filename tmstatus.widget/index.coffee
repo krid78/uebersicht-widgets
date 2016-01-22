@@ -145,8 +145,7 @@ style: """
   .revealer
     width 4px
     height 100%
-    //background-color bgcol()
-    background-color rgba(70,70,70, .9)
+    background-color bgcol()
     border-radius 2px
 """
 
