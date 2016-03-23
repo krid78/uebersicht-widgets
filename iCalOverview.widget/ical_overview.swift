@@ -3,13 +3,12 @@
 //  CalendarTool
 //
 //  Created by Benjamin Kunke on 04/11/14.
+//  Improved by Daniel Kriesten
 //  Copyright (c) 2014 Benjamin Kunke. All rights reserved.
 //
 
 import Foundation
 import EventKit
-
-
 
 ///////////////////////////////////////////////////////////////////////
 class CalendarTool
@@ -217,9 +216,8 @@ class CalendarTool
         var firstDate = true;
 
         //Für kommende Tage beginnend mit heute
-        for var day: Int = 0; day <= numberOfDays; day++
-        {
-
+        var day = 0
+        while day <= numberOfDays {
             let date = NSDate().dateByAddingTimeInterval(NSTimeInterval(24*60*60*day))
             let dateObject = dateObjectForDate(date)
 
@@ -229,7 +227,7 @@ class CalendarTool
                 else {firstDate = false}
                 dateArray += dateObject
             }
-
+            day += 1
         }
 
         dateArray += "]"
@@ -256,28 +254,29 @@ class CalendarTool
             print("debugging mode");
         }
 
-        for var i = 0; i <= Process.arguments.count-1; i++
-        {
-            let argument = Process.arguments[i]
+        var argpos = 0
+        while argpos <= Process.arguments.count-1 {
+            let argument = Process.arguments[argpos]
             if argument ==  "-t" || argument == "--tage"
             {
-                tage = Int(Process.arguments[i+1])! //.toInt()!
+                tage = Int(Process.arguments[argpos+1])! //.toInt()!
                 if (debuggingMode){print("Parameter: \(tage) Tage")}
             }
             else if argument == ("-i") || argument == "--include"
             {
-                let include = Process.arguments[i+1]
+                let include = Process.arguments[argpos+1]
                 if (debuggingMode){print(include)}
                 includeArray = include.componentsSeparatedByString(",")
             }
             else if argument == ("-e") || argument == ("--exclude")
             {
-                let exclude = Process.arguments[i+1]
+                let exclude = Process.arguments[argpos+1]
                 if (debuggingMode){print(exclude)}
                 excludeArray = exclude.componentsSeparatedByString(",")
 
             }
             else{()}
+            argpos += 1
 
         }
     }
