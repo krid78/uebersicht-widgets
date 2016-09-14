@@ -26,25 +26,25 @@ class CalendarTool
     var store = EKEventStore()
 
     //Gregorianischer Kalender
-    let nsCalendar = NSCalendar.currentCalendar()
+    let curCalendar = Calendar.current
 
     //Format für Datumsangaben
-    var dateFormatterDatum : NSDateFormatter = NSDateFormatter()
+    var dateFormatterDatum : DateFormatter = DateFormatter()
 
     //Format für Uhrzeiten
-    var dateFormatterUhrzeit : NSDateFormatter = NSDateFormatter()
+    var dateFormatterUhrzeit : DateFormatter = DateFormatter()
 
 
     /*
 
-    JSON - Syntax:
+     JSON - Syntax:
 
-    finales JSON-Objekt:        {EventsForNextDays: [dateObject1, dateObject2,...]}
-    dateObject:                 {datum: [calendarObject1, calendarObject2,...]}
-    calendarObject:             {Kalendertitel : [eventObject1, eventObject2,...]}
-    eventObject:                {start: Uhrzeit, ende: Uhrzeit, titel: Eventtitel}
+     finales JSON-Objekt:        {EventsForNextDays: [dateObject1, dateObject2,...]}
+     dateObject:                 {datum: [calendarObject1, calendarObject2,...]}
+     calendarObject:             {Kalendertitel : [eventObject1, eventObject2,...]}
+     eventObject:                {start: Uhrzeit, ende: Uhrzeit, titel: Eventtitel}
 
-    */
+     */
 
     init()
     {
@@ -66,13 +66,13 @@ class CalendarTool
     //Macht aus einem EKEvent ein eventObject mit titel, startzeit und endzeit
     //eventObject:                {start:Uhrzeit, ende: Uhrzeit, titel: Eventtitel}
 
-    func eventObjectForEvent(event: EKEvent) -> String
+    func eventObjectForEvent(_ event: EKEvent) -> String
     {
         var eventString = "{"
 
-        eventString += "\"titel\": \"\(event.title.stringByReplacingOccurrencesOfString("\"", withString: "\\\""))\","
-        eventString += "\"start\": \"\(dateFormatterUhrzeit.stringFromDate(event.startDate))\","
-        eventString += "\"ende\": \"\(dateFormatterUhrzeit.stringFromDate(event.endDate))\""
+        eventString += "\"titel\": \"\(event.title.replacingOccurrences(of: "\"", with: "\\\""))\","
+        eventString += "\"start\": \"\(dateFormatterUhrzeit.string(from: event.startDate))\","
+        eventString += "\"ende\": \"\(dateFormatterUhrzeit.string(from: event.endDate))\""
 
         eventString += "}"
 
@@ -87,7 +87,7 @@ class CalendarTool
     //Macht aus einem EKEvent-Array ein JSON Array
     //[eventObject1, eventObject2,...]
 
-    func eventArrayForEvents(events:[EKEvent]) -> String
+    func eventArrayForEvents(_ events:[EKEvent]) -> String
     {
         var eventArrayString = "["
 
@@ -108,17 +108,17 @@ class CalendarTool
     //Macht aus Startdatum, Enddatum und EKCalendar ein calendarObject (leer falls keine Events vorhanden)
     //{Kalendertitel : [eventObject1, eventObject2,...]}
 
-    func calendarObjectForStartDate(startDate: NSDate, endDate: NSDate, calendar: EKCalendar) -> String
+    func calendarObjectForStartDate(_ startDate: Date, endDate: Date, calendar: EKCalendar) -> String
     {
         var calendarObjectString: String
 
         //Legt ein Prädikat mit Startzeitpunkt, Endzeitpunkt und Kalender an
-        let predicate = store.predicateForEventsWithStartDate( startDate,
-            endDate: endDate,
-            calendars: [calendar])
+        let predicate = store.predicateForEvents( withStart: startDate,
+                                                  end: endDate,
+                                                  calendars: [calendar])
 
         //holt alle Events die dem Prädikat entsprechen
-        let events = store.eventsMatchingPredicate(predicate)
+        let events = store.events(matching: predicate)
 
         let eventArrayString = eventArrayForEvents(events)
 
@@ -140,7 +140,7 @@ class CalendarTool
     //Liefert ein JSON Array aus calendarObjects
     //[calendarObject1, calendarObject2,...]
 
-    func calendarArrayForDate(startDate: NSDate, endDate: NSDate,calendars:[EKCalendar]) -> String
+    func calendarArrayForDate(_ startDate: Date, endDate: Date,calendars:[EKCalendar]) -> String
     {
         var calendarArrayString = "["
 
@@ -166,14 +166,14 @@ class CalendarTool
 
     //Liefert ein dateObject für ein Datum
     //dateObject:             {datum : [calendarObject1, calendarObject2,...]}
-    func dateObjectForDate(date: NSDate) -> String
+    func dateObjectForDate(_ date: Date) -> String
     {
         var dateObject = ""
-        var startDate: NSDate
+        var startDate: Date
 
         //zerlegt übergebenes Datum und aktuellen Zeitpunkt in seine Komponenten
-        let dateComponents = nsCalendar.components([.Year, .Month, .Day], fromDate: date)
-        let todayComponents = nsCalendar.components([.Year, .Month, .Day], fromDate: NSDate())
+        var dateComponents = (curCalendar as NSCalendar).components([.year, .month, .day], from: date)
+        let todayComponents = (curCalendar as NSCalendar).components([.year, .month, .day], from: Date())
 
         //Wenn das übergebene Datum heute ist, wähle aktuellen Zeitpunkt (also ab aktueller Uhrzeit) als Startzeitpunkt
         //Sonst wähle Tagesbeginn
@@ -183,13 +183,13 @@ class CalendarTool
         }
         else
         {
-            startDate = nsCalendar.dateFromComponents(dateComponents)!
+            startDate = curCalendar.date(from: dateComponents)!
         }
 
-        dateComponents.day += 1
+        dateComponents.day? += 1
 
         //Enddatum: Tagesende
-        let endDate = nsCalendar.dateFromComponents(dateComponents)
+        let endDate = curCalendar.date(from: dateComponents)
 
         let calendarArray = calendarArrayForDate(startDate, endDate: endDate!, calendars: calendars)
 
@@ -199,7 +199,7 @@ class CalendarTool
         }
         else
         {
-            dateObject = "{\"\(dateFormatterDatum.stringFromDate(date))\":\(calendarArrayForDate(startDate, endDate: endDate!, calendars: calendars))}"
+            dateObject = "{\"\(dateFormatterDatum.string(from: date))\":\(calendarArrayForDate(startDate, endDate: endDate!, calendars: calendars))}"
             if(debuggingMode){print("Datumobjekt: \(dateObject)")}
         }
         return dateObject
@@ -208,7 +208,7 @@ class CalendarTool
     //Liefert ein Array von dateObjects für die nächsten Tage
     //[dateObject1, dateObject2,...]
 
-    func dateArrayForNextDays(numberOfDays:Int)->String
+    func dateArrayForNextDays(_ numberOfDays:Int)->String
     {
 
         var dateArray = "["
@@ -218,7 +218,7 @@ class CalendarTool
         //Für kommende Tage beginnend mit heute
         var day = 0
         while day <= numberOfDays {
-            let date = NSDate().dateByAddingTimeInterval(NSTimeInterval(24*60*60*day))
+            let date = Date().addingTimeInterval(TimeInterval(24*60*60*day))
             let dateObject = dateObjectForDate(date)
 
             if dateObject != ""
@@ -238,7 +238,7 @@ class CalendarTool
     //Liefert das finale JSON Objekt mit allen Events der nächsten Tage
     //{EventsForNextDays:[dateObject1, dateObject2,...]}
 
-    func JSONObjectForNextDays(numberOfDays:Int)->String
+    func JSONObjectForNextDays(_ numberOfDays:Int)->String
     {
         return "{\"EventsForNextDays\":\(dateArrayForNextDays(numberOfDays-1))}"
     }
@@ -246,7 +246,7 @@ class CalendarTool
     func initializeParameters()
     {
 
-        let arguments = Process.arguments
+        let arguments = CommandLine.arguments
 
         if arguments.contains("-d") || arguments.contains("--debug")
         {
@@ -255,24 +255,24 @@ class CalendarTool
         }
 
         var argpos = 0
-        while argpos <= Process.arguments.count-1 {
-            let argument = Process.arguments[argpos]
+        while argpos <= CommandLine.arguments.count-1 {
+            let argument = CommandLine.arguments[argpos]
             if argument ==  "-t" || argument == "--tage"
             {
-                tage = Int(Process.arguments[argpos+1])! //.toInt()!
+                tage = Int(CommandLine.arguments[argpos+1])! //.toInt()!
                 if (debuggingMode){print("Parameter: \(tage) Tage")}
             }
             else if argument == ("-i") || argument == "--include"
             {
-                let include = Process.arguments[argpos+1]
+                let include = CommandLine.arguments[argpos+1]
                 if (debuggingMode){print(include)}
-                includeArray = include.componentsSeparatedByString(",")
+                includeArray = include.components(separatedBy: ",")
             }
             else if argument == ("-e") || argument == ("--exclude")
             {
-                let exclude = Process.arguments[argpos+1]
+                let exclude = CommandLine.arguments[argpos+1]
                 if (debuggingMode){print(exclude)}
-                excludeArray = exclude.componentsSeparatedByString(",")
+                excludeArray = exclude.components(separatedBy: ",")
 
             }
             else{()}
@@ -288,11 +288,11 @@ class CalendarTool
 
 
         // Erfragt Zugang zu Entities vom Typ "Event" lokalen Store, gibt Erfolg in "granted: bool" zurück + evtl Fehlermeldung in "error: NSError"
-        store.requestAccessToEntityType(EKEntityType.Event, completion: {
+        store.requestAccess(to: EKEntityType.event, completion: {
             granted, error in
         })
 
-        let allCalendars = store.calendarsForEntityType(EKEntityType.Event)
+        let allCalendars = store.calendars(for: EKEntityType.event)
 
 
 
@@ -340,9 +340,3 @@ class CalendarTool
 var calTool = CalendarTool()
 
 print(calTool.getJSON())
-
-
-
-
-
-
